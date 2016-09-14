@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:background="@color/gray_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/tv_single_test"
+        android:gravity="center"
+        android:text="开始测试"
+        android:background="@drawable/start_button"
+        android:textColor="@color/dark"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:layout_width="300dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/tv_test_del"
+        android:gravity="center"
+        android:text="删除配置文件"
+        android:background="@drawable/start_button"
+        android:textColor="@color/dark"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:layout_width="300dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/tv_test_config"
+        android:gravity="center"
+        android:text="测试配置"
+        android:background="@drawable/start_button"
+        android:textColor="@color/dark"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:layout_width="300dp"
+        android:layout_height="60dp" />
+
+</LinearLayout>

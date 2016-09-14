@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="来料"
+            android:textSize="18sp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/lai_liao" />
+
+        <View
+            android:background="@color/black"
+            android:layout_width="1px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="功能"
+            android:textSize="18sp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/gong_neng" />
+
+        <View
+            android:background="@color/black"
+            android:layout_width="1px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="复测"
+            android:textSize="18sp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/fu_ce" />
+
+        <View
+            android:background="@color/black"
+            android:layout_width="1px"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="维修"
+            android:textSize="18sp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/wei_xiu" />
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:background="@color/blue_band_light"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:background="@color/gray_light"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <View
+                android:layout_weight="0.3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/white"
+                android:layout_width="1px"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:text="功能名称"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="@color/gray_light"
+                android:layout_width="1px"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:text="测试状态"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="@color/gray_light"
+                android:layout_width="1px"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:text="测试信息"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="@color/gray_light"
+                android:layout_width="1px"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:text="测试日期"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:background="@color/gray_light"
+                android:layout_width="1px"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:text="测试时间"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_light"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_items"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <include layout="@layout/title"/>
+
+</LinearLayout>
