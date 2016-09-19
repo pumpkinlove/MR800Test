@@ -19,59 +19,63 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected List<TestItem> selectedItems;
 
     protected Class getNextStep(int curStep, List<TestItem> itemList) {
-        if(itemList == null) {
+        if(curStep == -1) {
+            return getClassByStep(itemList.get(0).getStep());
+        }
+        if(itemList == null || itemList.size() == 0) {
             return null;
         }
-        return getClassByName(itemList.get(curStep).getName());
+        int next = 0;
+        for(int i=0; i<itemList.size(); i++) {
+            if(itemList.get(i).getStep() == curStep) {
+                if (( i + 1 ) == itemList.size()) {
+                   return ConfigActivity.class;
+                }
+                next = i + 1;
+                break;
+            }
+        }
+
+        return getClassByStep(itemList.get(next).getStep());
     }
 
-    protected Class getClassByName(String name) {
-        if("硬件信息".equals(name)) {
-            return BaseInfoActivity.class;
+    protected Class getClassByStep(int step) {
+        switch (step) {
+            case 0:
+                return BaseInfoActivity.class;
+            case 1:
+                return ScreenTestActivity.class;
+            case 2:
+                return KeyBoardActivity.class;
+            case 3:
+                return CameraActivity.class;
+            case 4:
+                return VoiceActivity.class;
+            case 5:
+                return USBActivity.class;
+            case 6:
+                return PortActivity.class;
+            case 7:
+                return PenActivity.class;
+            case 8:
+                return SDActivity.class;
+            case 9:
+                return CountActivity.class;
+            case 10:
+                return ICActivity.class;
+            case 11:
+                return FICActivity.class;
+            case 12:
+                return MicActivity.class;
+            case 13:
+                return WifiActivity.class;
+            case 14:
+                return IDActivity.class;
+            case 15:
+                return TouchTestActivity.class;
+            default:
+                return null;
         }
-        if("黑白屏测试".equals(name)) {
-            return ScreenTestActivity.class;
-        }
-        if("密码键盘测试".equals(name)) {
-            return KeyBoardActivity.class;
-        }
-        if("摄像头测试".equals(name)) {
-            return CameraActivity.class;
-        }
-        if("喇叭测试".equals(name)) {
-            return VoiceActivity.class;
-        }
-        if("USB测试".equals(name)) {
-            return USBActivity.class;
-        }
-        if("串口测试".equals(name)) {
-            return PortActivity.class;
-        }
-        if("签名笔测试".equals(name)) {
-            return PenActivity.class;
-        }
-        if("SD卡测试".equals(name)) {
-            return SDActivity.class;
-        }
-        if("点钞机测试".equals(name)) {
-            return CountActivity.class;
-        }
-        if("IC卡测试".equals(name)) {
-            return ICActivity.class;
-        }
-        if("非接触式IC卡测试".equals(name)) {
-            return FICActivity.class;
-        }
-        if("麦克风测试".equals(name)) {
-            return MicActivity.class;
-        }
-        if("WIFI测试".equals(name)) {
-            return WifiActivity.class;
-        }
-        if("二代证测试".equals(name)) {
-            return IDActivity.class;
-        }
-        return null;
     }
 
 }

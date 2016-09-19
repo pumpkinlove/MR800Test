@@ -57,6 +57,11 @@ public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.ItemVi
         });
         holder.item_name.setText(item.getName());
         holder.item_status.setText(item.getStatus());
+        if("通过".equals(item.getStatus())) {
+            holder.item_status.setTextColor(context.getResources().getColor(R.color.green_dark));
+        }else if("NG".equals(item.getStatus())) {
+            holder.item_status.setTextColor(context.getResources().getColor(R.color.red));
+        }
         holder.item_message.setText(item.getMessage());
         holder.item_opdate.setText(item.getOpdate());
         holder.item_optime.setText(item.getOptime());

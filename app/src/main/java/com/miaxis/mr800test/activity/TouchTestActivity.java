@@ -1,9 +1,9 @@
 package com.miaxis.mr800test.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.miaxis.mr800test.R;
 import com.miaxis.mr800test.utils.CommonUtil;
@@ -11,21 +11,23 @@ import com.miaxis.mr800test.utils.DateUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.Date;
 
-@ContentView(R.layout.activity_port)
-public class PortActivity extends BaseActivity {
+@ContentView(R.layout.activity_touch_test)
+public class TouchTestActivity extends BaseActivity {
+
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         x.view().inject(this);
         initData();
         initView();
-
     }
 
     @Override
@@ -34,13 +36,13 @@ public class PortActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 6;
+        step = 15;
         testType = getIntent().getStringExtra("testType");
     }
 
     @Override
     protected void initView() {
-
+        tv_title.setText("触摸屏测试");
     }
 
     @Event(R.id.tv_middle)

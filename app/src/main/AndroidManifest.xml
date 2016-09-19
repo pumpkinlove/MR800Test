@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseInfoActivity" />
-        <activity android:name=".activity.PasswordActivity" />
         <activity android:name=".activity.IOActivity" />
         <activity android:name=".activity.GridTestActivity" />
         <activity android:name=".activity.ConfigActivity" />
@@ -38,7 +37,8 @@
         <activity android:name=".activity.FICActivity" />
         <activity android:name=".activity.MicActivity" />
         <activity android:name=".activity.WifiActivity" />
-        <activity android:name=".activity.IDActivity"></activity>
+        <activity android:name=".activity.IDActivity" />
+        <activity android:name=".activity.TouchTestActivity"></activity>
     </application>
 
 </manifest>

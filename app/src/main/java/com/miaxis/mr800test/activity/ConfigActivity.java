@@ -75,7 +75,6 @@ public class ConfigActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        step = 0;
         allItems = new ArrayList<>();
         selectItems = new ArrayList<>();
         adapter = new TestItemAdapter(allItems, this);
@@ -88,7 +87,6 @@ public class ConfigActivity extends BaseActivity {
         tv_middle.setText("开始测试");
         rv_items.setLayoutManager(new LinearLayoutManager(this));
         rv_items.setAdapter(adapter);
-
     }
 
     @Event(R.id.lai_liao)
@@ -157,6 +155,7 @@ public class ConfigActivity extends BaseActivity {
 
         TestItem item = new TestItem();
 
+        item.setStep(0);
         item.setCheck("0");
         item.setName("硬件信息");
         item.setStatus("未通过");
@@ -166,6 +165,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(1);
         item.setCheck("0");
         item.setName("黑白屏测试");
         item.setStatus("未通过");
@@ -175,6 +175,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(2);
         item.setCheck("0");
         item.setName("密码键盘测试");
         item.setStatus("未通过");
@@ -184,6 +185,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(3);
         item.setCheck("0");
         item.setName("摄像头测试");
         item.setStatus("未通过");
@@ -193,6 +195,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(4);
         item.setCheck("0");
         item.setName("喇叭测试");
         item.setStatus("未通过");
@@ -202,6 +205,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(5);
         item.setCheck("0");
         item.setName("USB测试");
         item.setStatus("未通过");
@@ -211,8 +215,9 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(6);
         item.setCheck("0");
-        item.setName("主串口测试");
+        item.setName("串口测试");
         item.setStatus("未通过");
         item.setMessage("无");
         item.setOpdate("无");
@@ -220,6 +225,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(7);
         item.setCheck("0");
         item.setName("签名笔测试");
         item.setStatus("未通过");
@@ -229,6 +235,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(8);
         item.setCheck("0");
         item.setName("SD卡测试");
         item.setStatus("未通过");
@@ -238,6 +245,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(9);
         item.setCheck("0");
         item.setName("点钞机测试");
         item.setStatus("未通过");
@@ -247,6 +255,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(10);
         item.setCheck("0");
         item.setName("IC卡测试");
         item.setStatus("未通过");
@@ -256,6 +265,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(11);
         item.setCheck("0");
         item.setName("非接触式IC卡测试");
         item.setStatus("未通过");
@@ -265,6 +275,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(12);
         item.setCheck("0");
         item.setName("麦克风测试");
         item.setStatus("未通过");
@@ -274,6 +285,7 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(13);
         item.setCheck("0");
         item.setName("WIFI测试");
         item.setStatus("未通过");
@@ -283,8 +295,19 @@ public class ConfigActivity extends BaseActivity {
         items.add(item);
 
         item = new TestItem();
+        item.setStep(14);
         item.setCheck("0");
         item.setName("二代证测试");
+        item.setStatus("未通过");
+        item.setMessage("无");
+        item.setOpdate("无");
+        item.setOptime("无");
+        items.add(item);
+
+        item = new TestItem();
+        item.setStep(15);
+        item.setCheck("0");
+        item.setName("触摸屏测试");
         item.setStatus("未通过");
         item.setMessage("无");
         item.setOpdate("无");
@@ -296,20 +319,36 @@ public class ConfigActivity extends BaseActivity {
 
     @Event(R.id.tv_middle)
     private void startTest(View view) {
+        if(allItems == null || allItems.size() == 0) {
+            Toast.makeText(this, "请选择测试步骤",Toast.LENGTH_LONG).show();
+            return;
+        }
         CommonUtil.writeFile(testType, CommonUtil.parseString(allItems));
+        selectItems.clear();
         for(int i=0; i<allItems.size(); i++) {
             if("1".equals(allItems.get(i).getCheck())) {
                 selectItems.add(allItems.get(i));
             }
         }
-
-        Intent i = new Intent(this, getNextStep(step, selectItems));
+        if(selectItems == null || selectItems.size() == 0) {
+            Toast.makeText(this, "请勾选需要测试的项目",Toast.LENGTH_LONG).show();
+            return;
+        }
+        Class nextClass = getNextStep(-1, selectItems);
+        if(nextClass == null) {
+            return;
+        }
+        Intent i = new Intent(this, nextClass);
         i.putExtra("allItems",CommonUtil.parseString(allItems));
         i.putExtra("selected", CommonUtil.parseString(selectItems));
+        i.putExtra("testType", testType);
         i.putExtra("step", step + 1);
         startActivity(i);
 
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

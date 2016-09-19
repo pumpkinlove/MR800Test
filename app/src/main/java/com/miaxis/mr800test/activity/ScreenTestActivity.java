@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.miaxis.mr800test.R;
 import com.miaxis.mr800test.utils.CommonUtil;
+import com.miaxis.mr800test.utils.DateUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.Date;
 
 @ContentView(R.layout.activity_screen_test)
 public class ScreenTestActivity extends BaseActivity {
@@ -42,9 +45,9 @@ public class ScreenTestActivity extends BaseActivity {
     protected void initData() {
         String selected = getIntent().getStringExtra("selected");
         selectedItems = CommonUtil.parseItem(selected);
-        String all = getIntent().getStringExtra("all");
+        String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = getIntent().getIntExtra("step", -1);
+        step = 1;
         testType = getIntent().getStringExtra("testType");
     }
 
@@ -71,9 +74,15 @@ public class ScreenTestActivity extends BaseActivity {
         ll_title.setVisibility(View.GONE);
     }
 
-    @Event(value = {R.id.tv_middle, R.id.tv_right})
-    private void goNext(View view) {
+    @Event(R.id.tv_middle)
+    private void pass(View view) {
+        allItems.get(step).setStatus("通过");
+        allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
+        allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
+
         CommonUtil.writeFile(testType, CommonUtil.parseString(allItems));
+
+        selectedItems.clear();
         for(int i=0; i<allItems.size(); i++) {
             if("1".equals(allItems.get(i).getCheck())) {
                 selectedItems.add(allItems.get(i));
@@ -83,7 +92,30 @@ public class ScreenTestActivity extends BaseActivity {
         Intent i = new Intent(this, getNextStep(step, selectedItems));
         i.putExtra("allItems",CommonUtil.parseString(allItems));
         i.putExtra("selected", CommonUtil.parseString(selectedItems));
-        i.putExtra("step", step + 1);
+        i.putExtra("testType", testType);
+        startActivity(i);
+
+    }
+
+    @Event(R.id.tv_right)
+    private void ng(View view) {
+        allItems.get(step).setStatus("NG");
+        allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
+        allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
+
+        CommonUtil.writeFile(testType, CommonUtil.parseString(allItems));
+
+        selectedItems.clear();
+        for(int i=0; i<allItems.size(); i++) {
+            if("1".equals(allItems.get(i).getCheck())) {
+                selectedItems.add(allItems.get(i));
+            }
+        }
+
+        Intent i = new Intent(this, getNextStep(step, selectedItems));
+        i.putExtra("allItems",CommonUtil.parseString(allItems));
+        i.putExtra("selected", CommonUtil.parseString(selectedItems));
+        i.putExtra("testType", testType);
         startActivity(i);
 
     }

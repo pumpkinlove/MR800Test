@@ -26,16 +26,17 @@ public class CommonUtil {
 
     public static List<TestItem> parseItem(String str) {
         List<TestItem> items = new ArrayList<>();
-        String[] itemArray = str.split("-");
+        String[] itemArray = str.split("=");
         for(int i=0; i<itemArray.length; i++) {
             String[] array = itemArray[i].split("_");
             TestItem t = new TestItem();
-            t.setCheck(array[0]);
-            t.setName(array[1]);
-            t.setStatus(array[2]);
-            t.setMessage(array[3]);
-            t.setOpdate(array[4]);
-            t.setOptime(array[5]);
+            t.setStep(Integer.valueOf(array[0]));
+            t.setCheck(array[1]);
+            t.setName(array[2]);
+            t.setStatus(array[3]);
+            t.setMessage(array[4]);
+            t.setOpdate(array[5]);
+            t.setOptime(array[6]);
             items.add(t);
         }
         return items;
@@ -44,15 +45,16 @@ public class CommonUtil {
     public static String parseString(List<TestItem> items) {
         StringBuilder sb = new StringBuilder("");
         for(int i=0; i<items.size(); i++) {
-            sb.append(items.get(i).getCheck()+"_");
-            sb.append(items.get(i).getName()+"_");
-            sb.append(items.get(i).getStatus()+"_");
-            sb.append(items.get(i).getMessage()+"_");
-            sb.append(items.get(i).getOpdate()+"_");
-            if(i == (items.size()-1)) {
-                sb.append(items.get(i).getOptime()+"\n");
+            sb.append(items.get(i).getStep() + "_");
+            sb.append(items.get(i).getCheck() + "_");
+            sb.append(items.get(i).getName() + "_");
+            sb.append(items.get(i).getStatus() + "_");
+            sb.append(items.get(i).getMessage() + "_");
+            sb.append(items.get(i).getOpdate() + "_");
+            if(i == (items.size() - 1)) {
+                sb.append(items.get(i).getOptime());
             }else {
-                sb.append(items.get(i).getOptime()+"-\n");
+                sb.append(items.get(i).getOptime()+"=");
             }
         }
         return sb.toString();

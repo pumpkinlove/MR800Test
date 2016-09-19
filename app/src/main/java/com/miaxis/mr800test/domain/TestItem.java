@@ -7,12 +7,21 @@ import java.io.Serializable;
  */
 public class TestItem implements Serializable {
 
+    private int step;
     private String check;
     private String name;
     private String status;
     private String message;
     private String opdate;
     private String optime;
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
 
     public String getCheck() {
         return check;

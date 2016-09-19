@@ -22,5 +22,5 @@
 
     </LinearLayout>
 
-    <include layout="@layout/title"/>
+    <include layout="@layout/bottom"/>
 </LinearLayout>
