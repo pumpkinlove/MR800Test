@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.miaxis.mr800test.R;
 import com.miaxis.mr800test.utils.CommonUtil;
@@ -27,6 +28,10 @@ public class PenActivity extends BaseActivity {
 
     @ViewInject(R.id.iv_pen_preview)
     private ImageView ivPreview;
+
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class PenActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        tv_title.setText("签名笔测试");
         signatureView.setOnSignedListener(onSignedListener);
         signatureView.setPenColor(Color.BLACK/*SharedpreferencesData.getInstance().getPenColorValue()*/);
         signatureView.setMaxWidth(4/*SharedpreferencesData.getInstance().getPenWidth()*/);

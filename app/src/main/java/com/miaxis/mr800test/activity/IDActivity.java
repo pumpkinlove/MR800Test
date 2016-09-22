@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.miaxis.mr800test.R;
 import com.miaxis.mr800test.utils.CommonUtil;
@@ -11,12 +12,16 @@ import com.miaxis.mr800test.utils.DateUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.Date;
 
 @ContentView(R.layout.activity_id)
 public class IDActivity extends BaseActivity {
+
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,7 @@ public class IDActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        tv_title.setText("二代证测试");
     }
 
     @Event(R.id.tv_middle)

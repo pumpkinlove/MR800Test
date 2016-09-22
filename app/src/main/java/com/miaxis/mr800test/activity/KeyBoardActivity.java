@@ -1,21 +1,52 @@
 package com.miaxis.mr800test.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.miaxis.mr800test.R;
+import com.miaxis.mr800test.app.MyApplication;
+import com.miaxis.mr800test.domain.SendPwdEvent;
+import com.miaxis.mr800test.io.AbFitBin;
+import com.miaxis.mr800test.io.Action;
+import com.miaxis.mr800test.io.Command;
+import com.miaxis.mr800test.io.FitBinPSBC;
+import com.miaxis.mr800test.io.FitPactManager;
+import com.miaxis.mr800test.io.Hid;
+import com.miaxis.mr800test.io.OnIOListener;
+import com.miaxis.mr800test.io.PactCCB;
+import com.miaxis.mr800test.io.Serial;
 import com.miaxis.mr800test.utils.CommonUtil;
 import com.miaxis.mr800test.utils.DateUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.Date;
 
 @ContentView(R.layout.activity_key_board)
 public class KeyBoardActivity extends BaseActivity {
+
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
+
+    @ViewInject(R.id.tv_pwd)
+    private TextView tv_pwd;
+
+    @ViewInject(R.id.tv_pwd_flag)
+    private TextView tv_pwd_flag;
+
+    private boolean isPwdOn = true;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +55,13 @@ public class KeyBoardActivity extends BaseActivity {
         x.view().inject(this);
         initData();
         initView();
-
+//        initConfiguration(null);
+        registerReceiver();
     }
 
     @Override
     protected void initData() {
+        EventBus.getDefault().register(this);
         String selected = getIntent().getStringExtra("selected");
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
@@ -39,7 +72,7 @@ public class KeyBoardActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        tv_title.setText("密码键盘测试");
     }
 
     @Event(R.id.tv_middle)
@@ -87,4 +120,49 @@ public class KeyBoardActivity extends BaseActivity {
         startActivity(i);
 
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void sendPwd(SendPwdEvent event) {
+        tv_pwd.setText(""+event.getIndex());
+    }
+
+    @Event(R.id.tv_pwd_flag)
+    private void openPwd(View view) {
+        if(!isPwdOn){
+            isPwdOn = true;
+            tv_pwd_flag.setText("密码键盘已开启(再次点击关闭)");
+            byte[] buffer = new byte[1];
+            buffer[0] = (byte)(0x82);
+            FitPactManager fitPactManager = MyApplication.getPwdSerial();
+            fitPactManager.getAbIO().write(buffer, 1);
+        }else{
+            tv_pwd_flag.setText("密码键盘已关闭,点击测试");
+            isPwdOn = false;
+            byte[] buffer = new byte[1];
+            buffer[0] = (byte)(0x83);
+            FitPactManager fitPactManager = MyApplication.getPwdSerial();
+            fitPactManager.getAbIO().write(buffer, 1);
+        }
+
+    }
+
+    private void registerReceiver() {
+        IntentFilter filter = new IntentFilter();
+        //注册
+        filter.addAction(Action.ACTION_TEST_MAIN);
+        filter.addAction(Action.ACTION_SIGNATURE);
+        filter.addAction(Action.ACTION_RGB);
+        filter.addAction(Action.ACTION_EXIT);
+        registerReceiver(broadcastReceiver, filter);
+    }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String action = intent.getAction();
+        }
+    };
 }

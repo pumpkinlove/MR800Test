@@ -38,6 +38,8 @@ public class BaseInfoActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_base_info)
     private TextView tv_base_info;
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,9 @@ public class BaseInfoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        tv_title.setText("硬件信息");
         tv_base_info.setText(getBaseInfo());
+        getStorage();
     }
 
     private String getBaseInfo() {
@@ -70,9 +74,6 @@ public class BaseInfoActivity extends BaseActivity {
         for(int i=0; i<getCpuInfo().length; i++) {
             sb.append(getCpuInfo()[i]+"\n");
         }
-        sb.append("总内存：\n");
-        sb.append(getTotalMemory());
-
         return sb.toString();
     }
 
@@ -183,6 +184,30 @@ public class BaseInfoActivity extends BaseActivity {
         return resultBuffer.toString();
     }
 
+    public void getStorage(){
+        File romPath = Environment.getDataDirectory();
+        StatFs stat = new StatFs(romPath.getPath());
+        long blockCount = stat.getBlockCount();
+        long blockSize = stat.getBlockSize();
+        long romSize = blockCount * blockSize;
+        tv_base_info.append("内存信息：\nNAND_FLASH " + formatSize(romSize));
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            File sdPath = Environment.getExternalStorageDirectory();
+            StatFs sf = new StatFs(sdPath.getPath());
+            long bSize = sf.getBlockSize();
+            long bCount = sf.getBlockCount();
+            long sdSize = bSize * bCount;
+            tv_base_info.append(" / SD卡" + formatSize(sdSize));
+        }
+
+    }
+
+    @Event(R.id.tv_left)
+    private void reTest(View view) {
+        tv_base_info.setText(getBaseInfo());
+        getStorage();
+    }
 
     @Event(R.id.tv_middle)
     private void pass(View view) {

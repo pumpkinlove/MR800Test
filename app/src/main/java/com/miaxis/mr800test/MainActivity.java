@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.miaxis.mr800test.activity.BaseActivity;
 import com.miaxis.mr800test.activity.ConfigActivity;
-import com.miaxis.mr800test.activity.GridTestActivity;
+
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.x;

@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.miaxis.mr800test.R;
 import com.miaxis.mr800test.utils.CommonUtil;
@@ -28,6 +29,9 @@ public class CameraActivity extends BaseActivity {
     private Bitmap bitmap;
     @ViewInject(R.id.iv_photo)
     private ImageView iv_photo;
+
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class CameraActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        tv_title.setText("摄像头测试");
     }
 
     @Event(R.id.tv_take)

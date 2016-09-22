@@ -30,6 +30,10 @@ public class ScreenTestActivity extends BaseActivity {
     @ViewInject(R.id.ll_tilte)
     private LinearLayout ll_title;
 
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
@@ -53,6 +57,8 @@ public class ScreenTestActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        tv_title.setText("黑白屏测试");
+        tv_title.setVisibility(View.GONE);
         ll_title.setVisibility(View.GONE);
     }
 
@@ -63,6 +69,7 @@ public class ScreenTestActivity extends BaseActivity {
             flag = false;
         }else{
             ll_title.setVisibility(View.VISIBLE);
+            tv_title.setVisibility(View.VISIBLE);
         }
 
     }
@@ -72,6 +79,7 @@ public class ScreenTestActivity extends BaseActivity {
         flag = true;
         ll_screen.setBackgroundColor(getResources().getColor(R.color.black));
         ll_title.setVisibility(View.GONE);
+        tv_title.setVisibility(View.GONE);
     }
 
     @Event(R.id.tv_middle)
