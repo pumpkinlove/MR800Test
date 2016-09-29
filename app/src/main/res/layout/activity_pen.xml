@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <com.pensoon.android.signature.view.SignatureView
+        <com.miaxis.mr800test.view.SignatureViewCustom
             android:id="@+id/signature_frame_view"
             android:layout_width="0dp"
             android:layout_weight="5"

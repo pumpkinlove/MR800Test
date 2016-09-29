@@ -59,7 +59,7 @@ public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.ItemVi
         holder.item_status.setText(item.getStatus());
         if("通过".equals(item.getStatus())) {
             holder.item_status.setTextColor(context.getResources().getColor(R.color.green_dark));
-        }else if("NG".equals(item.getStatus())) {
+        }else if("失败".equals(item.getStatus())) {
             holder.item_status.setTextColor(context.getResources().getColor(R.color.red));
         }else {
             holder.item_status.setTextColor(context.getResources().getColor(R.color.dark));

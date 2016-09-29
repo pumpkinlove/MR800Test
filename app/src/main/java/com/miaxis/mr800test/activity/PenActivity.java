@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.miaxis.mr800test.R;
 import com.miaxis.mr800test.utils.CommonUtil;
 import com.miaxis.mr800test.utils.DateUtil;
+import com.miaxis.mr800test.view.SignatureViewCustom;
 import com.pensoon.android.signature.view.SignatureView;
 
 import org.xutils.view.annotation.ContentView;
@@ -24,14 +25,13 @@ import java.util.Date;
 public class PenActivity extends BaseActivity {
 
     @ViewInject(R.id.signature_frame_view)
-    private SignatureView signatureView;
+    private SignatureViewCustom signatureView;
 
     @ViewInject(R.id.iv_pen_preview)
     private ImageView ivPreview;
 
     @ViewInject(R.id.tv_title)
     private TextView tv_title;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +59,31 @@ public class PenActivity extends BaseActivity {
         signatureView.setOnSignedListener(onSignedListener);
         signatureView.setPenColor(Color.BLACK/*SharedpreferencesData.getInstance().getPenColorValue()*/);
         signatureView.setMaxWidth(4/*SharedpreferencesData.getInstance().getPenWidth()*/);
+
     }
 
-    SignatureView.OnSignedListener onSignedListener = new SignatureView.OnSignedListener(){
+    SignatureViewCustom.OnSignedListener onSignedListener = new SignatureViewCustom.OnSignedListener(){
+
 
         @Override
         public void onSigned() {
-            // TODO Auto-generated method stub
+
         }
 
         @Override
         public void onClear() {
-            // TODO Auto-generated method stub
+
         }
 
+        @Override
+        public void onSignDown() {
+
+        }
+
+        @Override
+        public void onSignUp() {
+
+        }
     };
 
     @Event(R.id.tv_pen_preview)
@@ -81,15 +92,10 @@ public class PenActivity extends BaseActivity {
         ivPreview.setImageBitmap(bitmap);
     }
 
-
-
-
     @Event(R.id.tv_left)
     private void reTest(View view) {
         signatureView.clear();
     }
-
-
 
     @Event(R.id.tv_middle)
     private void pass(View view) {
@@ -116,7 +122,7 @@ public class PenActivity extends BaseActivity {
 
     @Event(R.id.tv_right)
     private void ng(View view) {
-        allItems.get(step).setStatus("NG");
+        allItems.get(step).setStatus("失败");
         allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
         allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
 

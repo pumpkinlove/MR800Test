@@ -1,168 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@color/gray_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/rl_edge_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="30sp"
+                android:text="触摸屏测试——边缘触摸精度测试"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_edge_re"
+                    android:textSize="30sp"
+                    android:text="重试"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/btn_edge_pass"
+                    android:textSize="30sp"
+                    android:text="完成"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_touch1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_touch2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_touch3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_touch4"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_touch5"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btn_touch6"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btn_touch7"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+
+        <Button
+            android:id="@+id/btn_touch8"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@color/red" />
+    </RelativeLayout>
+
     <include layout="@layout/title"/>
 
     <LinearLayout
+        android:gravity="center"
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/iv_touch"
+            android:src="@mipmap/fff"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/touch1"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch2"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch3"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/touch4"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch5"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch6"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/touch7"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch8"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch9"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/touch10"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch11"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/touch12"
-                    android:clickable="true"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:scaleType="matrix"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
     <include layout="@layout/bottom"/>
 
 </LinearLayout>
+

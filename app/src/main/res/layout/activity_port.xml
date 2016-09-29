@@ -7,9 +7,75 @@
     <include layout="@layout/title"/>
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
+
+        <TextView
+            android:text="写入数据"
+            android:gravity="center"
+            android:textColor="@color/dark"
+            android:textSize="28sp"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:text="读取数据"
+            android:gravity="center"
+            android:textColor="@color/dark"
+            android:textSize="28sp"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/gray_dark"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <EditText
+            android:text="1234567890.abcdefghijklmnopqrstuvwxyz!@#$%^*()_+-=`"
+            android:gravity="center"
+            android:id="@+id/et_write"
+            android:textColor="@color/dark"
+            android:textSize="28sp"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_read"
+            android:textColor="@color/dark"
+            android:textSize="28sp"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

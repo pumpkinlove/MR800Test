@@ -14,18 +14,361 @@
         android:layout_height="0dp">
 
         <LinearLayout
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
 
             <TextView
+                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:textSize="30sp"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:id="@+id/tv_base_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="实际配置" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="配置要求" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:text="CPU信息"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_cpu" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:text="内存"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_ram" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:text="SD卡"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_sd" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:text="屏幕分辨率"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_resolution" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:text="屏幕尺寸"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_size" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:text="安卓版本"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_edition" />
+
+            <View
+                android:background="@color/gray_dark"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/dark"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

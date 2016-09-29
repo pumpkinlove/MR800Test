@@ -40,7 +40,7 @@ public class CameraActivity extends BaseActivity {
         x.view().inject(this);
         initData();
         initView();
-
+        startCamera(null);
     }
 
     @Override
@@ -58,22 +58,9 @@ public class CameraActivity extends BaseActivity {
         tv_title.setText("摄像头测试");
     }
 
-    @Event(R.id.tv_take)
+    @Event(R.id.tv_left)
     private void startCamera(View view) {
-//        long dateTaken = System.currentTimeMillis();
-//        String fileName = Environment.getExternalStorageDirectory().getPath()+"/"+ dateTaken+".jpg";
-//        ContentValues values = new ContentValues();
-//        values.put(MediaStore.Images.Media.TITLE, fileName);
-//        values.put("data", fileName);
-//        values.put(MediaStore.Images.Media.PICASA_ID, fileName);
-//        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
-//        values.put(MediaStore.Images.Media.DESCRIPTION, fileName);
-//        values.put(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME, fileName);
-//        Uri photoUri = getContentResolver().insert(
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
         Intent inttPhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        inttPhoto.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
         startActivityForResult(inttPhoto, 1);
     }
 
@@ -113,7 +100,7 @@ public class CameraActivity extends BaseActivity {
 
     @Event(R.id.tv_right)
     private void ng(View view) {
-        allItems.get(step).setStatus("NG");
+        allItems.get(step).setStatus("失败");
         allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
         allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
 

@@ -33,7 +33,7 @@ public class VoiceActivity extends BaseActivity {
         x.view().inject(this);
         initData();
         initView();
-
+        beep(null);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class VoiceActivity extends BaseActivity {
 
     @Event(R.id.tv_right)
     private void ng(View view) {
-        allItems.get(step).setStatus("NG");
+        allItems.get(step).setStatus("失败");
         allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
         allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
 
@@ -97,7 +97,7 @@ public class VoiceActivity extends BaseActivity {
 
     }
 
-    @Event(R.id.tv_play_voice)
+    @Event(R.id.tv_left)
     private void beep(View view){
         NotificationManager manger = (NotificationManager)
                 getSystemService(Context.NOTIFICATION_SERVICE);

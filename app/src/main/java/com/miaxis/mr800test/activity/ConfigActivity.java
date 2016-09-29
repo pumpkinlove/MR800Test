@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,9 @@ public class ConfigActivity extends BaseActivity {
     @ViewInject(R.id.wei_xiu)
     private TextView tv_wei_xiu;
 
+    @ViewInject(R.id.cb_all)
+    private CheckBox cb_all;
+
     @ViewInject(R.id.rv_items)
     private RecyclerView rv_items;
 
@@ -70,6 +75,20 @@ public class ConfigActivity extends BaseActivity {
         x.view().inject(this);
         initData();
         initView();
+        cb_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                for (int i=0; i<allItems.size(); i++) {
+                    if (b) {
+                        allItems.get(i).setCheck("1");
+                    } else {
+                        allItems.get(i).setCheck("0");
+                    }
+
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -82,6 +101,7 @@ public class ConfigActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        cb_all.setVisibility(View.INVISIBLE);
         tv_left.setVisibility(View.INVISIBLE);
         tv_right.setVisibility(View.INVISIBLE);
         tv_middle.setText("开始测试");
@@ -91,6 +111,8 @@ public class ConfigActivity extends BaseActivity {
 
     @Event(R.id.lai_liao)
     private void testLaiLiao(View view) {
+        cb_all.setVisibility(View.VISIBLE);
+        cb_all.setChecked(false);
         view.setBackgroundColor(getResources().getColor(R.color.blue_band_dark3));
         tv_gong_neng.setBackgroundColor(getResources().getColor(R.color.white));
         tv_fu_ce.setBackgroundColor(getResources().getColor(R.color.white));
@@ -101,6 +123,8 @@ public class ConfigActivity extends BaseActivity {
 
     @Event(R.id.gong_neng)
     private void testGongneng(View view) {
+        cb_all.setVisibility(View.VISIBLE);
+        cb_all.setChecked(false);
         view.setBackgroundColor(getResources().getColor(R.color.blue_band_dark3));
         tv_lai_liao.setBackgroundColor(getResources().getColor(R.color.white));
         tv_fu_ce.setBackgroundColor(getResources().getColor(R.color.white));
@@ -111,6 +135,8 @@ public class ConfigActivity extends BaseActivity {
 
     @Event(R.id.fu_ce)
     private void testFuCe(View view) {
+        cb_all.setVisibility(View.VISIBLE);
+        cb_all.setChecked(false);
         view.setBackgroundColor(getResources().getColor(R.color.blue_band_dark3));
         tv_gong_neng.setBackgroundColor(getResources().getColor(R.color.white));
         tv_lai_liao.setBackgroundColor(getResources().getColor(R.color.white));
@@ -121,6 +147,8 @@ public class ConfigActivity extends BaseActivity {
 
     @Event(R.id.wei_xiu)
     private void testWeiXiu(View view) {
+        cb_all.setVisibility(View.VISIBLE);
+        cb_all.setChecked(false);
         view.setBackgroundColor(getResources().getColor(R.color.blue_band_dark3));
         tv_gong_neng.setBackgroundColor(getResources().getColor(R.color.white));
         tv_fu_ce.setBackgroundColor(getResources().getColor(R.color.white));
@@ -158,7 +186,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(0);
         item.setCheck("0");
         item.setName("硬件信息");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -168,7 +196,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(1);
         item.setCheck("0");
         item.setName("黑白屏测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -178,7 +206,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(2);
         item.setCheck("0");
         item.setName("密码键盘测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -188,7 +216,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(3);
         item.setCheck("0");
         item.setName("摄像头测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -198,7 +226,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(4);
         item.setCheck("0");
         item.setName("喇叭测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -208,7 +236,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(5);
         item.setCheck("0");
         item.setName("USB测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -218,7 +246,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(6);
         item.setCheck("0");
         item.setName("串口测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -228,7 +256,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(7);
         item.setCheck("0");
         item.setName("签名笔测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -238,7 +266,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(8);
         item.setCheck("0");
         item.setName("SD卡测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -248,7 +276,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(9);
         item.setCheck("0");
         item.setName("点钞机测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -258,7 +286,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(10);
         item.setCheck("0");
         item.setName("IC卡测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -268,7 +296,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(11);
         item.setCheck("0");
         item.setName("非接触式IC卡测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -278,7 +306,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(12);
         item.setCheck("0");
         item.setName("麦克风测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -288,7 +316,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(13);
         item.setCheck("0");
         item.setName("WIFI测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -298,7 +326,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(14);
         item.setCheck("0");
         item.setName("二代证测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -308,7 +336,7 @@ public class ConfigActivity extends BaseActivity {
         item.setStep(15);
         item.setCheck("0");
         item.setName("触摸屏测试");
-        item.setStatus("未通过");
+        item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
         item.setOptime("无");
@@ -350,5 +378,10 @@ public class ConfigActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

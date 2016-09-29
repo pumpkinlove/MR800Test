@@ -54,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             case 5:
                 return USBActivity.class;
             case 6:
-                return PortActivity.class;
+                return SerialPortActivity.class;
             case 7:
                 return PenActivity.class;
             case 8:

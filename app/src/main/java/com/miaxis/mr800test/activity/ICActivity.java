@@ -73,7 +73,7 @@ public class ICActivity extends BaseActivity {
 
     @Event(R.id.tv_right)
     private void ng(View view) {
-        allItems.get(step).setStatus("NG");
+        allItems.get(step).setStatus("失败");
         allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
         allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
 

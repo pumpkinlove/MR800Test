@@ -40,11 +40,11 @@ public class MyApplication extends Application implements FitPactManager.OnFitPa
 
     private void initConfiguration() {
         //通道协议
-        fitPactManagerHid = new FitPactManager(
-                new Hid(DEVICE_NAME_HID), new PactCCB(), this);
-        fitPactManagerSerial = new FitPactManager(new Serial(
-                DEVICE_NAME_SERIAL, DEVICE_BAUD), new PactCCB(),
-                this);
+//        fitPactManagerHid = new FitPactManager(
+//                new Hid(DEVICE_NAME_HID), new PactCCB(), this);
+//        fitPactManagerSerial = new FitPactManager(new Serial(
+//                DEVICE_NAME_SERIAL, DEVICE_BAUD), new PactCCB(),
+//                this);
 
         pwdSerial = new FitPactManager(new Serial(
                 DEVICE_PWD_SERIAL, DEVICE_BAUD), new PactCCB(),
@@ -52,9 +52,9 @@ public class MyApplication extends Application implements FitPactManager.OnFitPa
         //匹配Bin文件
         abFitBin = new FitBinPSBC();
 //        abFitView = new FitViewTest();
-        fitPactManagerSerial.start();
+//        fitPactManagerSerial.start();
         pwdSerial.start();
-        fitPactManagerHid.start();
+//        fitPactManagerHid.start();
     }
 
     @Override

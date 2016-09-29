@@ -6,22 +6,19 @@
 
     <include layout="@layout/title"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
         <TextView
-            android:background="@drawable/light_press"
-            android:textColor="@color/dark"
-            android:text="播放"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:id="@+id/tv_play_voice"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:text="正在进行喇叭测试，点击重测可以重新播放语音"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <include layout="@layout/bottom"/>
 </LinearLayout>

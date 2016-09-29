@@ -46,7 +46,7 @@ public class KeyBoardActivity extends BaseActivity {
     @ViewInject(R.id.tv_pwd_flag)
     private TextView tv_pwd_flag;
 
-    private boolean isPwdOn = true;;
+    private boolean isPwdOn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +55,14 @@ public class KeyBoardActivity extends BaseActivity {
         x.view().inject(this);
         initData();
         initView();
-//        initConfiguration(null);
-        registerReceiver();
+
+        isPwdOn = true;
+        tv_pwd_flag.setText("密码键盘已开启,点击关闭");
+        tv_pwd_flag.setTextColor(getResources().getColor(R.color.green_dark));
+        byte[] buffer = new byte[1];
+        buffer[0] = (byte)(0x82);
+        FitPactManager fitPactManager = MyApplication.getPwdSerial();
+        fitPactManager.getAbIO().write(buffer, 1);
     }
 
     @Override
@@ -100,7 +106,7 @@ public class KeyBoardActivity extends BaseActivity {
 
     @Event(R.id.tv_right)
     private void ng(View view) {
-        allItems.get(step).setStatus("NG");
+        allItems.get(step).setStatus("失败");
         allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
         allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
 
@@ -121,23 +127,45 @@ public class KeyBoardActivity extends BaseActivity {
 
     }
 
+    @Event(R.id.tv_left)
+    private void reTest(View view) {
+        tv_pwd.setText("");
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void sendPwd(SendPwdEvent event) {
-        tv_pwd.setText(""+event.getIndex());
+        tv_pwd.append(""+event.getIndex());
+        if ("1234567890-2-1".equals(tv_pwd.getText().toString())) {
+            tv_pwd.setTextColor(getResources().getColor(R.color.green_dark));
+            tv_pwd.append("\n通过");
+        } else {
+            tv_pwd.setTextColor(getResources().getColor(R.color.dark));
+        }
+        if ("-1".equals(event.getIndex()+"")) {
+            tv_pwd_flag.setText("密码键盘已关闭,点击开启");
+            tv_pwd_flag.setTextColor(getResources().getColor(R.color.red));
+            isPwdOn = false;
+            byte[] buffer = new byte[1];
+            buffer[0] = (byte)(0x83);
+            FitPactManager fitPactManager = MyApplication.getPwdSerial();
+            fitPactManager.getAbIO().write(buffer, 1);
+        }
     }
 
     @Event(R.id.tv_pwd_flag)
     private void openPwd(View view) {
         if(!isPwdOn){
             isPwdOn = true;
-            tv_pwd_flag.setText("密码键盘已开启(再次点击关闭)");
+            tv_pwd_flag.setText("密码键盘已开启,点击关闭");
+            tv_pwd_flag.setTextColor(getResources().getColor(R.color.green_dark));
+            tv_pwd.setText("");
             byte[] buffer = new byte[1];
             buffer[0] = (byte)(0x82);
             FitPactManager fitPactManager = MyApplication.getPwdSerial();
             fitPactManager.getAbIO().write(buffer, 1);
         }else{
-            tv_pwd_flag.setText("密码键盘已关闭,点击测试");
+            tv_pwd_flag.setText("密码键盘已关闭,点击开启");
+            tv_pwd_flag.setTextColor(getResources().getColor(R.color.red));
             isPwdOn = false;
             byte[] buffer = new byte[1];
             buffer[0] = (byte)(0x83);
@@ -147,22 +175,9 @@ public class KeyBoardActivity extends BaseActivity {
 
     }
 
-    private void registerReceiver() {
-        IntentFilter filter = new IntentFilter();
-        //注册
-        filter.addAction(Action.ACTION_TEST_MAIN);
-        filter.addAction(Action.ACTION_SIGNATURE);
-        filter.addAction(Action.ACTION_RGB);
-        filter.addAction(Action.ACTION_EXIT);
-        registerReceiver(broadcastReceiver, filter);
+    @Override
+    protected void onPause() {
+
+        super.onPause();
     }
-
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            String action = intent.getAction();
-        }
-    };
 }
