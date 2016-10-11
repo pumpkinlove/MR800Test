@@ -38,7 +38,7 @@ public class FICActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 11;
+        step = 12;
         testType = getIntent().getStringExtra("testType");
     }
 

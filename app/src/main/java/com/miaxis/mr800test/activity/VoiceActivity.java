@@ -42,7 +42,7 @@ public class VoiceActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 4;
+        step = 8;
         testType = getIntent().getStringExtra("testType");
     }
 

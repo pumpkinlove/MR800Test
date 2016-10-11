@@ -51,7 +51,6 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
     public static final String DEVICE_MAIN_SERIAL = "/dev/ttySWK1";
     public static final int DEVICE_BAUD = 9600;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +61,11 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
 
 //        testSerial.start();
         EventBus.getDefault().register(this);
+
+        byte[] buffer = new byte[1];
+        buffer[0] = (byte)(0x82);
+        testSerial.getAbIO().write(buffer, 1);
+
     }
 
     @Override
@@ -91,8 +95,8 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
         CommonUtil.writeFile(testType, CommonUtil.parseString(allItems));
 
         selectedItems.clear();
-        for(int i=0; i<allItems.size(); i++) {
-            if("1".equals(allItems.get(i).getCheck())) {
+        for (int i=0; i<allItems.size(); i++) {
+            if ("1".equals(allItems.get(i).getCheck())) {
                 selectedItems.add(allItems.get(i));
             }
         }
@@ -107,6 +111,7 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
 
     @Event(R.id.tv_right)
     private void ng(View view) {
+
         allItems.get(step).setStatus("失败");
         allItems.get(step).setOpdate(DateUtil.toMonthDay(new Date()));
         allItems.get(step).setOptime(DateUtil.toHourMinString(new Date()));
@@ -115,8 +120,8 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
 
         selectedItems.clear();
 
-        for(int i=0; i<allItems.size(); i++) {
-            if("1".equals(allItems.get(i).getCheck())) {
+        for (int i=0; i<allItems.size(); i++) {
+            if ("1".equals(allItems.get(i).getCheck())) {
                 selectedItems.add(allItems.get(i));
             }
         }
@@ -143,7 +148,6 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
         tv_read.setText(event.getMessage());
         if (event.getMessage().equals(et_write.getText().toString())) {
             tv_read.setTextColor(getResources().getColor(R.color.green_dark));
-            tv_read.append("\n通过");
         } else {
             tv_read.setTextColor(getResources().getColor(R.color.red));
         }

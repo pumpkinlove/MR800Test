@@ -39,7 +39,7 @@ public class USBActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 5;
+        step = 9;
         testType = getIntent().getStringExtra("testType");
     }
 

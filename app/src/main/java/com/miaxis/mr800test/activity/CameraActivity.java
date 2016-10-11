@@ -49,7 +49,7 @@ public class CameraActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 3;
+        step = 7;
         testType = getIntent().getStringExtra("testType");
     }
 

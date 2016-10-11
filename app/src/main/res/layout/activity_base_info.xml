@@ -66,7 +66,7 @@
             android:layout_height="1dp"/>
 
         <LinearLayout
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp">
@@ -108,7 +108,9 @@
                 android:gravity="center"
                 android:textColor="@color/dark"
                 android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="ARM Cortex-A9\n1.6GHz"
+                android:id="@+id/tv_cpu_need" />
 
         </LinearLayout>
 
@@ -160,7 +162,9 @@
                 android:gravity="center"
                 android:textColor="@color/dark"
                 android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="1024.0MB"
+                android:id="@+id/tv_ram_need" />
 
         </LinearLayout>
 
@@ -176,7 +180,7 @@
             android:layout_height="0dp">
 
             <TextView
-                android:text="SD卡"
+                android:text="NAND FLASH"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:textSize="30sp"
@@ -212,7 +216,9 @@
                 android:gravity="center"
                 android:textColor="@color/dark"
                 android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="8GB"
+                android:id="@+id/tv_sd_need" />
 
         </LinearLayout>
 
@@ -264,7 +270,9 @@
                 android:gravity="center"
                 android:textColor="@color/dark"
                 android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="1280.0 * 800.0"
+                android:id="@+id/tv_resolution_need" />
 
         </LinearLayout>
 
@@ -316,7 +324,9 @@
                 android:gravity="center"
                 android:textColor="@color/dark"
                 android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="10.1英寸"
+                android:id="@+id/tv_size_need" />
 
         </LinearLayout>
 
@@ -368,7 +378,9 @@
                 android:gravity="center"
                 android:textColor="@color/dark"
                 android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="4.4.4"
+                android:id="@+id/tv_edition_need" />
 
         </LinearLayout>
 

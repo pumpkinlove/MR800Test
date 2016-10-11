@@ -39,7 +39,7 @@ public class IDActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 14;
+        step = 15;
         testType = getIntent().getStringExtra("testType");
     }
 

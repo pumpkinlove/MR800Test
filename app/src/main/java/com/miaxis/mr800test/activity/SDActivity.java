@@ -39,7 +39,7 @@ public class SDActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 8;
+        step = 10;
         testType = getIntent().getStringExtra("testType");
     }
 

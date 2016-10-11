@@ -1,7 +1,9 @@
 package com.miaxis.mr800test.activity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,8 +22,11 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 @ContentView(R.layout.activity_base_info)
@@ -43,6 +48,19 @@ public class BaseInfoActivity extends BaseActivity {
     @ViewInject(R.id.tv_edition)
     private TextView tv_edition;
 
+    @ViewInject(R.id.tv_cpu_need)
+    private TextView tv_cpu_need;
+    @ViewInject(R.id.tv_ram_need)
+    private TextView tv_ram_need;
+    @ViewInject(R.id.tv_sd_need)
+    private TextView tv_sd_need;
+    @ViewInject(R.id.tv_resolution_need)
+    private TextView tv_resolution_need;
+    @ViewInject(R.id.tv_size_need)
+    private TextView tv_size_need;
+    @ViewInject(R.id.tv_edition_need)
+    private TextView tv_edition_need;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +72,8 @@ public class BaseInfoActivity extends BaseActivity {
         fetchEdition();
         fetchStorage();
         fetchWidthHeight();
+        tv_size.setText(getScreenInch(this)+"英寸");
+        autoJudge();
     }
 
     @Override
@@ -72,11 +92,8 @@ public class BaseInfoActivity extends BaseActivity {
     }
 
     private void fetchCpuInfo() {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<getCpuInfo().length; i++) {
-            sb.append(getCpuInfo()[i]+"\n");
-        }
-        tv_cpu.setText(sb.toString());
+        tv_cpu.setText(getCpuInfo()[0].toString());
+        tv_cpu.append("\n" + Double.valueOf(getMaxCpuFreq()) / 1000000.00d + "GHz");
     }
 
     private void fetchEdition() {
@@ -137,6 +154,7 @@ public class BaseInfoActivity extends BaseActivity {
         long blockSize = stat.getBlockSize();
         long romSize = blockCount * blockSize;
         tv_ram.append(formatSize(romSize));
+
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             File sdPath = Environment.getExternalStorageDirectory();
@@ -151,26 +169,13 @@ public class BaseInfoActivity extends BaseActivity {
 
     private void fetchWidthHeight() {
 
-        Display mDisplay = getWindowManager().getDefaultDisplay();
-        int W = mDisplay.getWidth();
-        int H = mDisplay.getHeight();
-        Log.i("Main", "Width = " + W);
-        Log.i("Main", "Height = " + H);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getRealMetrics(dm);
+        float W =dm.widthPixels*dm.density;
+        float H =dm.heightPixels*dm.density;
+
         tv_resolution.setText(W+" * "+H);
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        float density = metrics.density;// 密度值
-        float xdpi = metrics.xdpi;
-//        float ydpi = metrics.ydpi;
-//        double zdpi = Math.sqrt(Math.pow(xdpi, 2) + Math.pow(ydpi, 2));
-        int width = metrics.widthPixels;
-        int height = metrics.heightPixels;
-        double z = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-
-        // 根据实践，我个人觉得xdpi这个值也可以这么理解，真正的dpi / xdpi = density ,
-        // 所以要获取真正的dpi就成了，xdpi*density,所以最后，根据勾股定理算对角线像素，除以dpi，就算出屏幕尺寸了
-        double f = (z / (xdpi * density));
-        tv_size.setText(f+"");
     }
 
     @Override
@@ -180,13 +185,13 @@ public class BaseInfoActivity extends BaseActivity {
 
     @Event(R.id.tv_left)
     private void reTest(View view) {
-        Intent intent = new Intent("/");
-        ComponentName cm = new ComponentName("com.android.settings","com.android.settings.DisplaySettings");
-        intent.setComponent(cm);
-        intent.setAction("android.intent.action.VIEW");
-        startActivityForResult( intent , 0);
+        fetchCpuInfo();
+        fetchEdition();
+        fetchStorage();
+        fetchWidthHeight();
+        tv_size.setText(getScreenInch(this)+"英寸");
+        autoJudge();
 
-//        getStorage();
     }
 
     @Event(R.id.tv_middle)
@@ -234,5 +239,135 @@ public class BaseInfoActivity extends BaseActivity {
         startActivity(i);
 
     }
+
+    public static String getMaxCpuFreq() {
+        String result = "";
+        ProcessBuilder cmd;
+        try {
+            String[] args = { "/system/bin/cat",
+                    "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq" };
+            cmd = new ProcessBuilder(args);
+            Process process = cmd.start();
+            InputStream in = process.getInputStream();
+            byte[] re = new byte[24];
+            while (in.read(re) != -1) {
+                result = result + new String(re);
+            }
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result = "N/A";
+        }
+        return result.trim();
+    }
+    // 获取CPU最小频率（单位KHZ）
+    public static String getMinCpuFreq() {
+        String result = "";
+        ProcessBuilder cmd;
+        try {
+            String[] args = { "/system/bin/cat",
+                    "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq" };
+            cmd = new ProcessBuilder(args);
+            Process process = cmd.start();
+            InputStream in = process.getInputStream();
+            byte[] re = new byte[24];
+            while (in.read(re) != -1) {
+                result = result + new String(re);
+            }
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result = "N/A";
+        }
+        return result.trim();
+    }
+    // 实时获取CPU当前频率（单位KHZ）
+    public static String getCurCpuFreq() {
+        String result = "N/A";
+        try {
+            FileReader fr = new FileReader(
+                    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq");
+            BufferedReader br = new BufferedReader(fr);
+            String text = br.readLine();
+            result = text.trim();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public double getScreenInch(Activity context) {
+        double mInch = 0.0d;
+        try {
+            int realWidth = 0, realHeight = 0;
+            Display display = context.getWindowManager().getDefaultDisplay();
+            DisplayMetrics metrics = new DisplayMetrics();
+            display.getRealMetrics(metrics);
+            if (android.os.Build.VERSION.SDK_INT >= 17) {
+                Point size = new Point();
+                display.getRealSize(size);
+                realWidth = size.x;
+                realHeight = size.y;
+            } else if (android.os.Build.VERSION.SDK_INT < 17
+                    && android.os.Build.VERSION.SDK_INT >= 14) {
+                Method mGetRawH = Display.class.getMethod("getRawHeight");
+                Method mGetRawW = Display.class.getMethod("getRawWidth");
+                realWidth = (Integer) mGetRawW.invoke(display);
+                realHeight = (Integer) mGetRawH.invoke(display);
+            } else {
+                realWidth = metrics.widthPixels;
+                realHeight = metrics.heightPixels;
+            }
+
+            mInch =(Math.sqrt((realWidth/metrics.xdpi) * (realWidth /metrics.xdpi) + (realHeight/metrics.ydpi) * (realHeight / metrics.ydpi)));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mInch;
+    }
+
+    private void autoJudge() {
+        if (tv_cpu.getText().equals(tv_cpu_need.getText())) {
+           tv_cpu.setTextColor(getResources().getColor(R.color.green_dark));
+        } else {
+            tv_cpu.setTextColor(getResources().getColor(R.color.red));
+        }
+
+        if (tv_ram.getText().equals(tv_ram_need.getText())) {
+            tv_ram.setTextColor(getResources().getColor(R.color.green_dark));
+        } else {
+            tv_ram.setTextColor(getResources().getColor(R.color.red));
+        }
+
+        if (tv_sd.getText().equals(tv_sd_need.getText())) {
+            tv_sd.setTextColor(getResources().getColor(R.color.green_dark));
+        } else {
+            tv_sd.setTextColor(getResources().getColor(R.color.red));
+        }
+
+        if (tv_resolution.getText().equals(tv_resolution_need.getText())) {
+            tv_resolution.setTextColor(getResources().getColor(R.color.green_dark));
+        } else {
+            tv_resolution.setTextColor(getResources().getColor(R.color.red));
+        }
+
+        if (tv_size.getText().equals(tv_size_need.getText())) {
+            tv_size.setTextColor(getResources().getColor(R.color.green_dark));
+        } else {
+            tv_size.setTextColor(getResources().getColor(R.color.red));
+        }
+
+        if (tv_edition.getText().equals(tv_edition_need.getText())) {
+            tv_edition.setTextColor(getResources().getColor(R.color.green_dark));
+        } else {
+            tv_edition.setTextColor(getResources().getColor(R.color.red));
+        }
+    }
+
 
 }

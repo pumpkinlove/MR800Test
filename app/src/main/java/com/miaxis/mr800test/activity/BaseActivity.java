@@ -44,35 +44,35 @@ public abstract class BaseActivity extends AppCompatActivity {
             case 0:
                 return BaseInfoActivity.class;
             case 1:
-                return ScreenTestActivity.class;
-            case 2:
-                return KeyBoardActivity.class;
-            case 3:
-                return CameraActivity.class;
-            case 4:
-                return VoiceActivity.class;
-            case 5:
-                return USBActivity.class;
-            case 6:
-                return SerialPortActivity.class;
-            case 7:
                 return PenActivity.class;
-            case 8:
-                return SDActivity.class;
-            case 9:
-                return CountActivity.class;
-            case 10:
-                return ICActivity.class;
-            case 11:
-                return FICActivity.class;
-            case 12:
-                return MicActivity.class;
-            case 13:
-                return WifiActivity.class;
-            case 14:
-                return IDActivity.class;
-            case 15:
+            case 2:
+                return ScreenTestActivity.class;
+            case 3:
                 return TouchTestActivity.class;
+            case 4:
+                return KeyBoardActivity.class;
+            case 5:
+                return SerialPortActivity.class;
+            case 6:
+                return CountActivity.class;
+            case 7:
+                return CameraActivity.class;
+            case 8:
+                return VoiceActivity.class;
+            case 9:
+                return USBActivity.class;
+            case 10:
+                return SDActivity.class;
+            case 11:
+                return ICActivity.class;
+            case 12:
+                return FICActivity.class;
+            case 13:
+                return MicActivity.class;
+            case 14:
+                return WifiActivity.class;
+            case 15:
+                return IDActivity.class;
             default:
                 return null;
         }

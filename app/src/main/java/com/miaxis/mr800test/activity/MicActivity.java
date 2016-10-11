@@ -39,7 +39,7 @@ public class MicActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 12;
+        step = 13;
         testType = getIntent().getStringExtra("testType");
     }
 

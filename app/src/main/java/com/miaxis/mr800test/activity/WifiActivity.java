@@ -39,7 +39,7 @@ public class WifiActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 13;
+        step = 14;
         testType = getIntent().getStringExtra("testType");
     }
 

@@ -49,7 +49,7 @@ public class PenActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 7;
+        step = 1;
         testType = getIntent().getStringExtra("testType");
     }
 

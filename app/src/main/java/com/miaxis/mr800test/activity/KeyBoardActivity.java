@@ -72,7 +72,7 @@ public class KeyBoardActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 2;
+        step = 4;
         testType = getIntent().getStringExtra("testType");
     }
 

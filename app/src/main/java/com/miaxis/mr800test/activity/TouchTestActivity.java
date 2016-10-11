@@ -50,7 +50,7 @@ public class TouchTestActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 15;
+        step = 3;
         testType = getIntent().getStringExtra("testType");
 
     }

@@ -195,7 +195,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(1);
         item.setCheck("0");
-        item.setName("黑白屏测试");
+        item.setName("签名笔测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -205,7 +205,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(2);
         item.setCheck("0");
-        item.setName("密码键盘测试");
+        item.setName("黑白屏测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -215,7 +215,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(3);
         item.setCheck("0");
-        item.setName("摄像头测试");
+        item.setName("触摸屏测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -225,7 +225,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(4);
         item.setCheck("0");
-        item.setName("喇叭测试");
+        item.setName("密码键盘测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -235,7 +235,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(5);
         item.setCheck("0");
-        item.setName("USB测试");
+        item.setName("串口测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -245,7 +245,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(6);
         item.setCheck("0");
-        item.setName("串口测试");
+        item.setName("点钞机测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -255,7 +255,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(7);
         item.setCheck("0");
-        item.setName("签名笔测试");
+        item.setName("摄像头测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -265,7 +265,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(8);
         item.setCheck("0");
-        item.setName("SD卡测试");
+        item.setName("喇叭测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -275,7 +275,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(9);
         item.setCheck("0");
-        item.setName("点钞机测试");
+        item.setName("USB测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -285,7 +285,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(10);
         item.setCheck("0");
-        item.setName("IC卡测试");
+        item.setName("SD卡测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -295,7 +295,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(11);
         item.setCheck("0");
-        item.setName("非接触式IC卡测试");
+        item.setName("IC卡测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -305,7 +305,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(12);
         item.setCheck("0");
-        item.setName("麦克风测试");
+        item.setName("非接触式IC卡测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -315,7 +315,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(13);
         item.setCheck("0");
-        item.setName("WIFI测试");
+        item.setName("麦克风测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -325,7 +325,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(14);
         item.setCheck("0");
-        item.setName("二代证测试");
+        item.setName("WIFI测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");
@@ -335,7 +335,7 @@ public class ConfigActivity extends BaseActivity {
         item = new TestItem();
         item.setStep(15);
         item.setCheck("0");
-        item.setName("触摸屏测试");
+        item.setName("二代证测试");
         item.setStatus("未测试");
         item.setMessage("无");
         item.setOpdate("无");

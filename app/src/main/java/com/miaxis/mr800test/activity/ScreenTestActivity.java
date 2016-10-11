@@ -51,7 +51,7 @@ public class ScreenTestActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 1;
+        step = 2;
         testType = getIntent().getStringExtra("testType");
     }
 

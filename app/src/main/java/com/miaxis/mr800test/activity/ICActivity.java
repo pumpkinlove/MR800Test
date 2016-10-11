@@ -39,7 +39,7 @@ public class ICActivity extends BaseActivity {
         selectedItems = CommonUtil.parseItem(selected);
         String all = getIntent().getStringExtra("allItems");
         allItems = CommonUtil.parseItem(all);
-        step = 10;
+        step = 11;
         testType = getIntent().getStringExtra("testType");
     }
 

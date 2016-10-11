@@ -40,11 +40,15 @@ public class FitPactManager implements OnIOListener {
 	public void onIoRead(byte[] buffer, int length) {
 		byte[] filterPackage = abPact.filterPackage(buffer, length);
 		if (filterPackage != null) {
-			byte[] peelData = abPact.peelPackage(filterPackage,
-					filterPackage.length);
-			if (peelData != null && fitPactListener != null) {
-				fitPactListener.onFitData(peelData, abIO.getDeviceName(), this);
+			try {
+				byte[] peelData = abPact.peelPackage(filterPackage,
+						filterPackage.length);
+				if (peelData != null && fitPactListener != null) {
+					fitPactListener.onFitData(peelData, abIO.getDeviceName(), this);
 //				ALog.Log(TAG, "FitPactManager is OK!");
+				}
+			} catch (Exception e) {
+				Log.e("peelDataException", e.getMessage());
 			}
 		} else {
 			if (abPact.isFindStx) { // 有协议包的数据不单个发送要收集整包在发送
