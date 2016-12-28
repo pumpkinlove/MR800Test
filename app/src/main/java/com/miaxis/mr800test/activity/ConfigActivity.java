@@ -161,7 +161,7 @@ public class ConfigActivity extends BaseActivity {
         allItems.clear();
         File file = new File(Environment.getExternalStorageDirectory(), path);
         if(!file.exists()) {
-            Toast.makeText(this, path + " 文件不存在, 即将写入新", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, path + " 文件不存在, 即将创建新文件", Toast.LENGTH_LONG).show();
             allItems = fetchNewList();
             CommonUtil.writeFile(path, CommonUtil.parseString(allItems));
             adapter.setItems(allItems);

@@ -48,7 +48,10 @@ public class CountActivity extends BaseActivity implements FitPactManager.OnFitP
     private static FitPactManager testSerial;
     private static AbFitBin abFitBin;
 
-    public static final String DEVICE_MAIN_SERIAL = "/dev/ttySWK1";
+    public static final String DEVICE_MAIN_SERIAL = "/dev/ttyS1";
+    public static final String SHOW_BACK_SERIAL = "/dev/ttySWK1";
+    public static final String PWD_SERIAL = "/dev/ttySWK3";
+
     public static final int DEVICE_BAUD = 9600;
 
     @Override
